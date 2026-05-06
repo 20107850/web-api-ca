@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"54e24000308f43cf99538f6193becf11","collectionName":"cafes","type":"collection"}
