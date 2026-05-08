@@ -20,6 +20,12 @@ import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
 
 import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
 
+
+import AuthContextProvider from "./contexts/authContext";
+import LoginPage from "./pages/loginPage";
+import SignupPage from "./pages/signupPage";
+import ProtectedRoutes from "./protectedRoutes";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
