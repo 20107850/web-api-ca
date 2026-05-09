@@ -31,14 +31,17 @@ app.use(express.static('public'));
 app.use(express.json());
 
 
-app.use(errHandler);
+
 //Users router
 app.use('/api/users', usersRouter);
 
 app.use('/api/movies', moviesRouter);
 
+app.use('/api/watchlist', watchlistRouter);
+
+app.use(errHandler);
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
+
   
-  app.use('/api/watchlist', watchlistRouter);
 });
