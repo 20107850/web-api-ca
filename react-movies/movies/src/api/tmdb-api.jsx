@@ -17,12 +17,9 @@ export const getMovies = ({ queryKey }) => {
 };
 
 
-export const getMovie = (args) => {
-  //console.log(args)
-  const [, idPart] = args.queryKey;
-  const { id } = idPart;
+export const getMovie = (id) => {
   return fetch(
-     `http://localhost:8080/api/movies/discover`
+    `http://localhost:8080/api/movies/${id}`
   ).then((response) => {
     if (!response.ok) {
       return response.json().then((error) => {
@@ -33,7 +30,7 @@ export const getMovie = (args) => {
   })
   .catch((error) => {
     throw error
- });
+  });
 };
 
 
