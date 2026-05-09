@@ -17,7 +17,20 @@ export const getMovies = ({ queryKey }) => {
 };
 
 
-export const getMovie = (id) => {
+export const getMovie = (args) => {
+  let id;
+
+  if (args.queryKey) {
+    const [, idPart] = args.queryKey;
+    id = idPart.id;
+  } else {
+    id = args;
+  }
+
+  if (typeof id === "object") {
+    id = id.id;
+  }
+
   return fetch(
     `http://localhost:8080/api/movies/${id}`
   ).then((response) => {
