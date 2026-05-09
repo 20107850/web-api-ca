@@ -40,8 +40,9 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <SiteHeader />
-        <MoviesContextProvider>
+        <AuthContextProvider>
+          <MoviesContextProvider>
+          <SiteHeader />
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
@@ -58,8 +59,9 @@ const App = () => {
 <Route path="/movies/popular" element={<PopularMoviesPage />} />
 <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
           </Routes>
-        </MoviesContextProvider>
-      </BrowserRouter>
+            </MoviesContextProvider>
+          </AuthContextProvider>
+        </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
