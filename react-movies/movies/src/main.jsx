@@ -44,20 +44,22 @@ const App = () => {
           <MoviesContextProvider>
           <SiteHeader />
           <Routes>
-            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+            
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="*" element={ <Navigate to="/" /> } />
-            <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} /> 
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-
             <Route path="/movies/now-playing" element={<NowPlayingMoviesPage />} />
-
-            <Route path="/movies/must-watch" element={<MustWatchMoviesPage />} />
-            
-<Route path="/movies/popular" element={<PopularMoviesPage />} />
-<Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
+            <Route path="/movies/popular" element={<PopularMoviesPage />} />
+            <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
+            <Route element={<ProtectedRoutes />}>
+        <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+         <Route path="/reviews/form" element={<AddMovieReviewPage />} />
+        <Route path="/movies/must-watch" element={<MustWatchMoviesPage />} />
+        </Route>
+        <Route path="*" element={ <Navigate to="/" /> } />
           </Routes>
             </MoviesContextProvider>
           </AuthContextProvider>
