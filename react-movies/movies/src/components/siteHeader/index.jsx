@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../../contexts/authContext";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -17,6 +17,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
+  const context = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -25,15 +26,25 @@ const SiteHeader = () => {
   
   const navigate = useNavigate();
 
-const menuOptions = [
-  { label: "Home", path: "/" },
-  { label: "Favorites", path: "/movies/favorites" },
-  { label: "Upcoming", path: "/movies/upcoming" },
-  { label: "Now Playing", path: "/movies/now-playing" },
-  { label: "Popular", path: "/movies/popular" },
-  { label: "Top Rated", path: "/movies/top-rated" },
-  { label: "Must Watch", path: "/movies/must-watch" },
-];
+const menuOptions = context.isAuthenticated
+  ? [
+      { label: "Home", path: "/" },
+      { label: "Favorites", path: "/movies/favorites" },
+      { label: "Upcoming", path: "/movies/upcoming" },
+      { label: "Now Playing", path: "/movies/now-playing" },
+      { label: "Popular", path: "/movies/popular" },
+      { label: "Top Rated", path: "/movies/top-rated" },
+      { label: "Must Watch", path: "/movies/must-watch" },
+    ]
+  : [
+      { label: "Home", path: "/" },
+      { label: "Upcoming", path: "/movies/upcoming" },
+      { label: "Now Playing", path: "/movies/now-playing" },
+      { label: "Popular", path: "/movies/popular" },
+      { label: "Top Rated", path: "/movies/top-rated" },
+      { label: "Login", path: "/login" },
+      { label: "Signup", path: "/signup" },
+    ];
 
   const handleMenuSelect = (pageURL) => {
     setAnchorEl(null);
@@ -88,6 +99,16 @@ const menuOptions = [
                       {opt.label}
                     </MenuItem>
                   ))}
+                  {context.isAuthenticated ? (
+         <MenuItem
+        onClick={() => {
+        setAnchorEl(null);
+        context.signout();
+         }}
+          >
+           Sign out
+          </MenuItem>
+          ) : null}
                 </Menu>
               </>
             ) : (
@@ -101,6 +122,14 @@ const menuOptions = [
                     {opt.label}
                   </Button>
                 ))}
+                {context.isAuthenticated ? (
+        <Button
+      color="inherit"
+      onClick={() => context.signout()}
+      >
+        Sign out
+      </Button>
+      ) : null}
               </>
             )}
         </Toolbar>
