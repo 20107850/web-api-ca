@@ -1,7 +1,6 @@
-import { login, signup } from "../api/tmdb-api";
-
 import { useState, createContext } from "react";
 import { login, signup } from "../api/tmdb-api";
+
 
 export const AuthContext = createContext(null); //eslint-disable-line
 
