@@ -9,6 +9,6 @@ router.get('/', asyncHandler(async (req, res) => {
     res.status(200).json(watchlist);
 }));
 
-
+// watchlist routes to be added
 
 export default router;
