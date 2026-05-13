@@ -9,9 +9,4 @@ router.get('/', asyncHandler(async (req, res) => {
     res.status(200).json(watchlist);
 }));
 
-router.post('/', asyncHandler(async (req, res) => {
-    const watchlistItem = await Watchlist.create(req.body);
-    res.status(201).json(watchlistItem);
-}));
-
 export default router;
