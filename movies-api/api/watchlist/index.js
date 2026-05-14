@@ -10,7 +10,7 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.get('/user/:username', asyncHandler(async (req, res) => {
-    const watchlist = await Watchlist.find({ username: req.params });
+    const watchlist = await Watchlist.find({ username: req.params.username });
     res.status(200).json(watchlist);
 }));
 
